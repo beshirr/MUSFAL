@@ -1,0 +1,17 @@
+.root {
+    -fx-background-color: #111111;
+}
+
+.menu-bar {
+    -fx-background-color: black;
+    -fx-border-radius: 10px;
+}
+
+.menu {
+    -fx-font-size: 32;
+    -fx-fill-color: red;
+}
+
+.menu-button {
+
+}

@@ -1,0 +1,18 @@
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+
+<?import javafx.scene.control.MenuItem?>
+<MenuBar fx:controller="org.openjfx.workoutplanner.TopMenuBarController" xmlns:fx="http://javafx.com/fxml">
+    <Menu text="HOME"/>
+    <Menu text="CALCULATORS">
+        <MenuItem text="BMI" onAction="#handleBMI"/>
+        <MenuItem text="BODY FAT INDEX" onAction="#handleBFI"/>
+        <MenuItem text="CALORIES BURNT" onAction="#handleCB"/>
+        <MenuItem text="DAILY CALORIE CALCULATOR" onAction="#handleDCC"/>
+        <MenuItem text="ONE REP MAX CALCULATOR" onAction="#handleORMC"/>
+    </Menu>
+    <Menu text="EXERCISES"/>
+    <Menu text="WORKOUT PROGRAMS"/>
+    <Menu text="PROFILE"/>
+
+</MenuBar>
