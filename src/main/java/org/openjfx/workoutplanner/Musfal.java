@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
@@ -18,6 +19,8 @@ public class Musfal extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
         stage.setTitle("MUSFAL");
         stage.setScene(new Scene(root, 800, 600));
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/icon.png")));
+        stage.getIcons().add(icon);
         stage.show();
         stage.setFullScreen(true);
     }
