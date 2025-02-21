@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ReadExerciseJson {
     public static JsonArray readExerciseJson() {
         try {
-            FileReader reader = new FileReader("exercises.json");
+            FileReader reader = new FileReader("data/exercises.json");
 
             Gson gson = new Gson();
             JsonObject data = gson.fromJson(reader, JsonObject.class);
