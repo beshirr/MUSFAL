@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: #111111;
+    -fx-background-color: #0A0A0A;
 }
 
 .menu-bar {
@@ -10,8 +10,17 @@
 .menu {
     -fx-font-size: 32;
     -fx-fill-color: red;
+    -fx-background-color: black;
 }
 
-.menu-button {
+.top-right-aligned {
+}
 
+
+#bmiHeaderText {
+    -fx-font-size: 128;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Franklin Gothic Heavy";
+    -fx-alignment: top-right;
+    -fx-start-margin: 250px;
 }
