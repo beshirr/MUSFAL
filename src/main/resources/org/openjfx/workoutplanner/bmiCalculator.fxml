@@ -1,5 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
-<VBox>
-    <Label text="Bmi cal"/>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.workoutplanner.bmiCalculator" stylesheets="@css/style.css">
+    <fx:include source="topMenuBar.fxml"/>
+    <Label fx:id="bmiHeaderText" text="Bmi Calculator"/>
+    <TextField fx:id="bmiWeight" promptText="Your weight (kg)" onAction="#handleBmiWeightInput"/>
+    <TextField fx:id="bmiHeight" promptText="Your height (cm)" onAction="#handleBmiHeightInput"/>
+    <Button fx:id="bmiSubmit" text="Calculate" onAction="#calculateBmi"/>
+    <Label fx:id="bmiResult"/>
+    <Label fx:id="resultCondition"/>
 </VBox>
