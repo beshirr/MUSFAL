@@ -2,40 +2,78 @@ package org.openjfx.workoutplanner;
 import com.google.gson.JsonArray;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
 public class ExercisesController {
-    public VBox ui_exercisesContainer;
+    @FXML
+    private VBox ui_exercisesContainer;
 
     @FXML
     private void initialize() {
-        int n_exercises = 100;
-        for (int i = 0; i < n_exercises; i++) {
-            Exercise exercise = new Exercise(i);
-            Label ui_exerciseName = new Label(exercise.getName());
-            ui_exercisesContainer.getChildren().add(ui_exerciseName);
-
-            for (int j = 0; j < exercise.getInstructions().size(); j++) {
-                Label ui_instructions = new Label(exercise.getInstructions().get(j).getAsString());
-                ui_exercisesContainer.getChildren().add(ui_instructions);
+        try {
+            JsonArray exercises = HandleJson.readExerciseJson();
+            if (exercises != null) {
+                int n_exercises = 100;
+                for (int i = 0; i < n_exercises; i++) {
+                    Exercise exercise = new Exercise(i);
+                    ui_exercisesContainer.getChildren().add(createExerciseCard(exercise));
+                }
             }
-            for (int j = 0; j < exercise.getTargetMuscles().size(); j++) {
-                Label ui_targetMuscles = new Label(exercise.getTargetMuscles().get(j).getAsString());
-                ui_exercisesContainer.getChildren().add(ui_targetMuscles);
-            }
-            for (int j = 0; j < exercise.getBodyParts().size(); j++) {
-                Label ui_bodyParts = new Label(exercise.getBodyParts().get(j).getAsString());
-                ui_exercisesContainer.getChildren().add(ui_bodyParts);
-            }
-            for (int j = 0; j < exercise.getEquipments().size(); j++) {
-                Label ui_equipments = new Label(exercise.getEquipments().get(j).getAsString());
-                ui_exercisesContainer.getChildren().add(ui_equipments);
-            }
+        } catch (Exception e) {
+            Label errorLabel = new Label("Error loading exercises: " + e.getMessage());
+            ui_exercisesContainer.getChildren().add(errorLabel);
         }
     }
-}
 
+    private VBox createExerciseCard(Exercise exercise) {
+        VBox card = new VBox(10);
+        card.getStyleClass().add("exercise-card");
+
+        HBox header = new HBox(10);
+        header.getStyleClass().add("exercise-header");
+
+        Label nameLabel = new Label(exercise.getName().toUpperCase());
+        nameLabel.getStyleClass().add("exercise-title");
+
+        header.getChildren().addAll(nameLabel);
+
+        VBox details = new VBox(5);
+        details.getStyleClass().add("exercise-details");
+
+        HBox musclesBox = new HBox(20);
+        VBox targetMusclesBox = new VBox(5);
+        Label targetMusclesTitle = new Label("Target Muscles:");
+        targetMusclesTitle.getStyleClass().add("section-title");
+        targetMusclesBox.getChildren().add(targetMusclesTitle);
+        exercise.getTargetMuscles().forEach(muscle ->
+                targetMusclesBox.getChildren().add(new Label("• " + muscle.getAsString().toUpperCase())));
+
+        VBox equipmentBox = new VBox(5);
+        Label equipmentTitle = new Label("Equipment:");
+        equipmentTitle.getStyleClass().add("section-title");
+        equipmentBox.getChildren().add(equipmentTitle);
+        exercise.getEquipments().forEach(equipment ->
+                equipmentBox.getChildren().add(new Label("• " + equipment.getAsString().toUpperCase())));
+
+        musclesBox.getChildren().addAll(targetMusclesBox, equipmentBox);
+
+        TitledPane instructionsPane = new TitledPane();
+        instructionsPane.setText("Instructions");
+        VBox instructionsBox = new VBox(5);
+        exercise.getInstructions().forEach(instruction ->
+                instructionsBox.getChildren().add(new Label(instruction.getAsString().toUpperCase())));
+        instructionsPane.setContent(instructionsBox);
+        instructionsPane.setExpanded(false);
+
+        details.getChildren().addAll(musclesBox, instructionsPane);
+
+        card.getChildren().addAll(header, details);
+        return card;
+    }
+}
 
 class Exercise {
     private final String name;

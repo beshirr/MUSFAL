@@ -2,42 +2,16 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.workoutplanner.ExercisesController">
+<VBox stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.openjfx.workoutplanner.ExercisesController">
     <fx:include source="topMenuBar.fxml" />
-   <ScrollPane>
-<!--     <content>-->
-<!--       <AnchorPane>-->
-<!--            <children>-->
-<!--               <Accordion>-->
-<!--                 <panes>-->
-<!--                   <TitledPane animated="false" text="untitled 1">-->
-<!--                     <content>-->
-<!--                       <AnchorPane />-->
-<!--                     </content>-->
-<!--                   </TitledPane>-->
-<!--                   <TitledPane animated="false" text="untitled 2">-->
-<!--                     <content>-->
-<!--                       <AnchorPane/>-->
-<!--                     </content>-->
-<!--                   </TitledPane>-->
-<!--                   <TitledPane animated="false" text="untitled 3">-->
-<!--                     <content>-->
-<!--                       <AnchorPane/>-->
-<!--                     </content>-->
-<!--                   </TitledPane>-->
-<!--                     <TitledPane animated="false" layoutX="10.0" layoutY="61.0" text="untitled 3">-->
-<!--                        <content>-->
-<!--                           <AnchorPane />-->
-<!--                        </content>-->
-<!--                     </TitledPane>-->
-<!--                 </panes>-->
-<!--               </Accordion>-->
-<!--            </children>-->
-<!--         </AnchorPane>-->
-<!--     </content>-->
-       <VBox fx:id="ui_exercisesContainer">
-
-       </VBox>
-   </ScrollPane>
+    <ScrollPane fitToWidth="true">
+        <VBox fx:id="ui_exercisesContainer" spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </ScrollPane>
 </VBox>
