@@ -2,37 +2,76 @@ package org.openjfx.workoutplanner;
 import com.google.gson.JsonArray;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import org.openjfx.workoutplanner.ReadExerciseJson;
-
-import java.io.IOException;
-import java.util.Objects;
 
 
-public class Exercises {
-    public VBox exercisesContainer;
+public class ExercisesController {
+    public VBox ui_exercisesContainer;
 
     @FXML
     private void initialize() {
-        JsonArray exercises = ReadExerciseJson.readExerciseJson();
-        for (int i = 0; i < exercises.size(); i++) {
-            Label label = new Label("exercise " + (i + 1));
-            label.setText(i+1 + "- " + exercises.get(i).getAsJsonObject().get("name").getAsString());
-            exercisesContainer.getChildren().add(label);
+        int n_exercises = 100;
+        for (int i = 0; i < n_exercises; i++) {
+            Exercise exercise = new Exercise(i);
+            Label ui_exerciseName = new Label(exercise.getName());
+            ui_exercisesContainer.getChildren().add(ui_exerciseName);
 
-            for (int j = 0; j < exercises.get(i).getAsJsonObject().get("instructions").getAsJsonArray().size(); j++) {
-                Label instructions = new Label("Instructions");
-                instructions.setText(exercises.get(i).getAsJsonObject().get("instructions").getAsJsonArray().get(j).getAsString());
-                exercisesContainer.getChildren().add(instructions);
+            for (int j = 0; j < exercise.getInstructions().size(); j++) {
+                Label ui_instructions = new Label(exercise.getInstructions().get(j).getAsString());
+                ui_exercisesContainer.getChildren().add(ui_instructions);
             }
-            for (int j = 0; j < exercises.get(i).getAsJsonObject().get("targetMuscles").getAsJsonArray().size(); j++) {
-                Label target = new Label("Target");
-                target.setText(exercises.get(i).getAsJsonObject().get("targetMuscles").getAsJsonArray().get(j).getAsString());
-                exercisesContainer.getChildren().add(target);
+            for (int j = 0; j < exercise.getTargetMuscles().size(); j++) {
+                Label ui_targetMuscles = new Label(exercise.getTargetMuscles().get(j).getAsString());
+                ui_exercisesContainer.getChildren().add(ui_targetMuscles);
+            }
+            for (int j = 0; j < exercise.getBodyParts().size(); j++) {
+                Label ui_bodyParts = new Label(exercise.getBodyParts().get(j).getAsString());
+                ui_exercisesContainer.getChildren().add(ui_bodyParts);
+            }
+            for (int j = 0; j < exercise.getEquipments().size(); j++) {
+                Label ui_equipments = new Label(exercise.getEquipments().get(j).getAsString());
+                ui_exercisesContainer.getChildren().add(ui_equipments);
             }
         }
+    }
+}
+
+
+class Exercise {
+    private final String name;
+    private final String gifUrl;
+    private final JsonArray instructions;
+    private final JsonArray targetMuscles;
+    private final JsonArray bodyParts;
+    private final JsonArray equipments;
+
+    public Exercise(int i) {
+        JsonArray exercises = HandleJson.readExerciseJson();
+        assert exercises != null;
+        this.name = exercises.get(i).getAsJsonObject().get("name").getAsString();
+        this.gifUrl =  exercises.get(i).getAsJsonObject().get("gifUrl").getAsString();
+        this.instructions = exercises.get(i).getAsJsonObject().get("instructions").getAsJsonArray();
+        this.bodyParts = exercises.get(i).getAsJsonObject().get("bodyParts").getAsJsonArray();
+        this.equipments = exercises.get(i).getAsJsonObject().get("equipments").getAsJsonArray();
+        this.targetMuscles = exercises.get(i).getAsJsonObject().get("targetMuscles").getAsJsonArray();
+    }
+
+    public String getName() {
+        return name;
+    }
+    public String getGifUrl() {
+        return gifUrl;
+    }
+    public JsonArray getInstructions() {
+        return instructions;
+    }
+    public JsonArray getTargetMuscles() {
+        return targetMuscles;
+    }
+    public JsonArray getBodyParts() {
+        return bodyParts;
+    }
+    public JsonArray getEquipments() {
+        return equipments;
     }
 }

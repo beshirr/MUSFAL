@@ -1,3 +1,4 @@
+// TODO: Fix the full length issue
 package org.openjfx.workoutplanner;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -7,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class ReadExerciseJson {
+public class HandleJson {
     public static JsonArray readExerciseJson() {
         try {
             FileReader reader = new FileReader("D:/FCAI/Level 2/Second semester/SWE/Assignment-1/Task 1/workoutPlanner/src/main/resources/org/openjfx/workoutplanner/exercises.json");

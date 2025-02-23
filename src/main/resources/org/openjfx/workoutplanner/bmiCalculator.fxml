@@ -9,12 +9,12 @@
 
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.workoutplanner.Calculators" stylesheets="@css/style.css">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.workoutplanner.CalculatorsController" stylesheets="@css/style.css">
     <fx:include source="topMenuBar.fxml"/>
-    <Label fx:id="bmiHeaderText" text="Bmi Calculator"/>
-    <TextField fx:id="inputWeight" promptText="Your weight (kg)" onAction="#handleWeightInput"/>
-    <TextField fx:id="inputHeight" promptText="Your height (cm)" onAction="#handleHeightInput"/>
-    <Button fx:id="bmiSubmit" text="Calculate" onAction="#calculateBmi"/>
-    <Label fx:id="result"/>
-    <Label fx:id="resultClassification"/>
+    <Label text="Bmi Calculator"/>
+    <TextField fx:id="inputWeight" promptText="Your weight (kg)" />
+    <TextField fx:id="inputHeight" promptText="Your height (cm)" />
+    <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateBMI"/>
+    <Label fx:id="ui_resultLabel"/>
+    <Label fx:id="ui_resultClassification"/>
 </VBox>
