@@ -16,7 +16,7 @@ public class Musfal extends Application {
     public void start(Stage stage) throws IOException {
         SceneController.setStage(stage);
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exercises.fxml")));
         stage.setTitle("MUSFAL");
         stage.setScene(new Scene(root, 800, 600));
         Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/icon.png")));
