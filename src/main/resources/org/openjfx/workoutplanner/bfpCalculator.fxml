@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
 <?import java.lang.String?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.workoutplanner.CalculatorsController"
-      stylesheets="@css/style.css">
+<?import javafx.scene.layout.HBox?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.openjfx.workoutplanner.CalculatorsController"
+      stylesheets="@css/style.css"
+      spacing="15">
+
     <fx:include source="topMenuBar.fxml"/>
 
-    <fx:define>
-        <ToggleGroup fx:id="genderGroup"/>
-        <String fx:id="identifier" fx:value="bfp"/>
-    </fx:define>
-    <Label text="Body Fat Percentage Calculator"/>
+    <VBox spacing="10" styleClass="content-container">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
 
-    <RadioButton text="Male" toggleGroup="$genderGroup" />
-    <RadioButton text="Female" toggleGroup="$genderGroup"/>
+        <fx:define>
+            <ToggleGroup fx:id="genderGroup"/>
+            <String fx:id="identifier" fx:value="bfp"/>
+        </fx:define>
 
-    <TextField fx:id="inputWeight" promptText="Weight (kg)" />
-    <TextField fx:id="inputHeight" promptText="Height (cm)" />
-    <TextField fx:id="inputWaistCirc" promptText="Waist Circumference (cm)" />
-    <TextField fx:id="inputHipCirc" promptText="Hip Circumference (cm)" />
-    <TextField fx:id="inputNeckCirc" promptText="Neck Circumference (cm)" />
+        <Label text="Body Fat Percentage Calculator" styleClass="page-title"/>
 
-    <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBFP"/>
-    <Label fx:id="ui_resultLabel"/>
-    <Label fx:id="ui_resultClassification"/>
+        <HBox spacing="20" styleClass="radio-group">
+            <RadioButton text="Male" toggleGroup="$genderGroup" selected="true"/>
+            <RadioButton text="Female" toggleGroup="$genderGroup"/>
+        </HBox>
+
+        <TextField fx:id="inputWeight" promptText="Weight (kg)" />
+        <TextField fx:id="inputHeight" promptText="Height (cm)" />
+        <TextField fx:id="inputWaistCirc" promptText="Waist Circumference (cm)" />
+        <TextField fx:id="inputHipCirc" promptText="Hip Circumference (cm)" />
+        <TextField fx:id="inputNeckCirc" promptText="Neck Circumference (cm)" />
+
+        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBFP"/>
+
+        <Label fx:id="ui_resultLabel"/>
+        <Label fx:id="ui_resultClassification"/>
+    </VBox>
 </VBox>

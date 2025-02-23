@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- TODO: Easy user input -->
-
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.workoutplanner.CalculatorsController" stylesheets="@css/style.css">
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.openjfx.workoutplanner.CalculatorsController"
+      stylesheets="@css/style.css"
+      spacing="15">
+
     <fx:include source="topMenuBar.fxml"/>
-    <Label text="Bmi Calculator"/>
-    <TextField fx:id="inputWeight" promptText="Your weight (kg)" />
-    <TextField fx:id="inputHeight" promptText="Your height (cm)" />
-    <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateBMI"/>
-    <Label fx:id="ui_resultLabel"/>
-    <Label fx:id="ui_resultClassification"/>
+
+    <StackPane VBox.vgrow="ALWAYS">
+        <VBox spacing="10" styleClass="content-container" maxWidth="400">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="BMI Calculator" styleClass="page-title"/>
+
+            <TextField fx:id="inputWeight" promptText="Your weight (kg)" />
+            <TextField fx:id="inputHeight" promptText="Your height (cm)" />
+
+            <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateBMI"/>
+
+            <Label fx:id="ui_resultLabel"/>
+            <Label fx:id="ui_resultClassification"/>
+        </VBox>
+    </StackPane>
 </VBox>
