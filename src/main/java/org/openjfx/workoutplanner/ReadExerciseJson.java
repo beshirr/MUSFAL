@@ -10,12 +10,11 @@ import java.io.IOException;
 public class ReadExerciseJson {
     public static JsonArray readExerciseJson() {
         try {
-            FileReader reader = new FileReader("data/exercises.json");
+            FileReader reader = new FileReader("D:/FCAI/Level 2/Second semester/SWE/Assignment-1/Task 1/workoutPlanner/src/main/resources/org/openjfx/workoutplanner/exercises.json");
 
             Gson gson = new Gson();
             JsonObject data = gson.fromJson(reader, JsonObject.class);
-
-            JsonArray exercises = data.getAsJsonArray("exercises");
+            JsonArray exercises = data.get("data").getAsJsonObject().get("exercises").getAsJsonArray();
             reader.close();
             return exercises;
         }
