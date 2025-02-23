@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioButton?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.workoutplanner.Calculators"
+      stylesheets="@css/style.css">
+    <fx:include source="topMenuBar.fxml"/>
+
+    <fx:define>
+        <ToggleGroup fx:id="genderGroup"/>
+    </fx:define>
+    <Label text="Body Fat Percentage Calculator"/>
+
+    <RadioButton text="Male" toggleGroup="$genderGroup" />
+    <RadioButton text="Female" toggleGroup="$genderGroup"/>
+
+    <TextField fx:id="inputWeight" promptText="Weight (kg)" onAction="#handleWeightInput"/>
+    <TextField fx:id="inputHeight" promptText="Height (cm)" onAction="#handleHeightInput"/>
+    <TextField fx:id="inputWaistCirc" promptText="Waist Circumference (cm)" onAction="#handleWaistInput"/>
+    <TextField fx:id="inputHipCirc" promptText="Hip Circumference (cm)" onAction="#handleHipInput"/>
+    <TextField fx:id="inputNeckCirc" promptText="Neck Circumference (cm)" onAction="#handleNeckInput"/>
+
+    <Button fx:id="bfpSubmit" text="Calculate" onAction="#calculateBFP"/>
+    <Label fx:id="result"/>
+    <Label fx:id="resultClassification"/>
+</VBox>
