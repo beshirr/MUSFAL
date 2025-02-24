@@ -26,7 +26,7 @@
         <Label text="Body Fat Percentage Calculator" styleClass="page-title"/>
 
         <HBox spacing="20" styleClass="radio-group">
-            <RadioButton text="Male" toggleGroup="$genderGroup" selected="true"/>
+            <RadioButton text="Male" toggleGroup="$genderGroup"/>
             <RadioButton text="Female" toggleGroup="$genderGroup"/>
         </HBox>
 
