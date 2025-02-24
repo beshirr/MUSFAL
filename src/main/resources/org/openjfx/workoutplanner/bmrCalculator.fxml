@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.openjfx.workoutplanner.CalculatorsController"
+      stylesheets="@css/style.css"
+      spacing="15">
+
+    <fx:include source="topMenuBar.fxml"/>
+
+    <VBox spacing="10" styleClass="content-container">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <fx:define>
+            <ToggleGroup fx:id="genderGroup"/>
+            <String fx:id="identifier" fx:value="bmr"/>
+        </fx:define>
+
+        <Label text="Body Fat Percentage Calculator" styleClass="page-title"/>
+
+        <HBox spacing="20" styleClass="radio-group">
+            <RadioButton text="Male" toggleGroup="$genderGroup"/>
+            <RadioButton text="Female" toggleGroup="$genderGroup"/>
+        </HBox>
+
+        <TextField fx:id="inputAge" promptText="Age"/>
+        <TextField fx:id="inputWeight" promptText="Weight (kg)" />
+        <TextField fx:id="inputHeight" promptText="Height (cm)" />
+
+        <ComboBox fx:id="activityComboBox" promptText="Select Your Activity Level"/>
+
+
+        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBMR"/>
+
+        <Label fx:id="ui_resultLabel"/>
+        <Label fx:id="ui_resultClassification"/>
+    </VBox>
+</VBox>
