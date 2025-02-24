@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 
 
 public class CalculatorsController {
+    public TextField inputAge;
+    public ComboBox activityComboBox;
     @FXML
     String identifier;
     public TextField inputWeight;
@@ -19,14 +21,23 @@ public class CalculatorsController {
     public Label ui_resultClassification;
     public ToggleGroup genderGroup;
     String userGender;
+    String userActivityLevel;
 
     @FXML
     private void initialize() {
-        if ("bfp".equals(identifier)) {
+        if ("bfp".equals(identifier) || "bmr".equals(identifier)) {
             genderGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     RadioButton selectedRadioButton = (RadioButton) newValue;
                     userGender = selectedRadioButton.getText();
+                }
+            });
+        }
+        if ("bmr".equals(identifier)) {
+            activityComboBox.getItems().addAll("LIGHT", "MODERATE", "VERY", "EXTREME");
+            activityComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    userActivityLevel = newValue.toString();
                 }
             });
         }
@@ -47,9 +58,22 @@ public class CalculatorsController {
         String classification = Calculators.bmiClassification(result);
         ui_resultClassification.setText(classification);
     }
+
+    public void ui_calculateBMR(ActionEvent actionEvent) {
+        double activityLevel = Calculators.evaluateActivityLevel(Calculators.ActivityLevel.valueOf(userActivityLevel));
+        double result = Calculators.calculateBMR(userGender, Integer.parseInt(inputAge.getText()), Double.parseDouble(inputWeight.getText()),
+                Double.parseDouble(inputHeight.getText()), activityLevel);
+        ui_resultLabel.setText(String.format("%.2f", result));
+    }
 }
 
 class Calculators {
+    enum ActivityLevel {
+        LIGHT,
+        MODERATE,
+        VERY,
+        EXTREME,
+    }
     /**
      * BMI-Calculations
      */
@@ -80,5 +104,21 @@ class Calculators {
             return 86.01 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
         }
         return 163.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) + 78.387;
+    }
+
+    public static double evaluateActivityLevel(ActivityLevel activityLevel) {
+        return switch (activityLevel) {
+            case LIGHT -> 1.375;
+            case MODERATE -> 1.55;
+            case VERY -> 1.725;
+            case EXTREME -> 1.9;
+        };
+    }
+
+    public static double calculateBMR(String gender, int age, double weight, double height, double activityLevel) {
+        if (gender.equals("Male")) {
+            return (10 * weight + 6.25 * height - 5 * age + 5) * activityLevel;
+        }
+        return (10 * weight + 6.25 * height - 5 * age - 161) * activityLevel;
     }
 }

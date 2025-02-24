@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
 
-<?import java.lang.String?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.openjfx.workoutplanner.CalculatorsController"
       stylesheets="@css/style.css"
@@ -20,7 +21,7 @@
 
         <fx:define>
             <ToggleGroup fx:id="genderGroup"/>
-            <String fx:id="identifier" fx:value="bfp"/>
+            <String fx:id="identifier" fx:value="bmr"/>
         </fx:define>
 
         <Label text="Body Fat Percentage Calculator" styleClass="page-title"/>
@@ -30,13 +31,14 @@
             <RadioButton text="Female" toggleGroup="$genderGroup"/>
         </HBox>
 
+        <TextField fx:id="inputAge" promptText="Age"/>
         <TextField fx:id="inputWeight" promptText="Weight (kg)" />
         <TextField fx:id="inputHeight" promptText="Height (cm)" />
-        <TextField fx:id="inputWaistCirc" promptText="Waist Circumference (cm)" />
-        <TextField fx:id="inputHipCirc" promptText="Hip Circumference (cm)" />
-        <TextField fx:id="inputNeckCirc" promptText="Neck Circumference (cm)" />
 
-        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBFP"/>
+        <ComboBox fx:id="activityComboBox" promptText="Select Your Activity Level"/>
+
+
+        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBMR"/>
 
         <Label fx:id="ui_resultLabel"/>
         <Label fx:id="ui_resultClassification"/>

@@ -19,7 +19,7 @@ public class TopMenuBarController {
     }
 
     public void handleDCC(ActionEvent actionEvent) throws IOException {
-        SceneController.switchScene("bmiCalculator.fxml", "Daily Calories Calculator");
+        SceneController.switchScene("bmrCalculator.fxml", "Daily Calories Calculator");
     }
 
     public void handleORMC(ActionEvent actionEvent) throws IOException {
