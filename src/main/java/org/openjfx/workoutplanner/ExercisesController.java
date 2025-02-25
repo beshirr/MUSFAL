@@ -1,4 +1,5 @@
 package org.openjfx.workoutplanner;
+
 import com.google.gson.JsonArray;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,10 +8,49 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-public class ExercisesController {
-    @FXML
-    private VBox ui_exercisesContainer;
+class Exercise {
+    public Exercise(int i) {
+        JsonArray exercises = HandleJson.readExerciseJson();
+        assert exercises != null;
+        this.name = exercises.get(i).getAsJsonObject().get("name").getAsString();
+        this.gifUrl =  exercises.get(i).getAsJsonObject().get("gifUrl").getAsString();
+        this.instructions = exercises.get(i).getAsJsonObject().get("instructions").getAsJsonArray();
+        this.bodyParts = exercises.get(i).getAsJsonObject().get("bodyParts").getAsJsonArray();
+        this.equipments = exercises.get(i).getAsJsonObject().get("equipments").getAsJsonArray();
+        this.targetMuscles = exercises.get(i).getAsJsonObject().get("targetMuscles").getAsJsonArray();
+    }
 
+    public String getName() {
+        return name;
+    }
+    public String getGifUrl() {
+        return gifUrl;
+    }
+    public JsonArray getInstructions() {
+        return instructions;
+    }
+    public JsonArray getTargetMuscles() {
+        return targetMuscles;
+    }
+    public JsonArray getBodyParts() {
+        return bodyParts;
+    }
+    public JsonArray getEquipments() {
+        return equipments;
+    }
+
+
+    private final String name;
+    private final String gifUrl;
+    private final JsonArray instructions;
+    private final JsonArray targetMuscles;
+    private final JsonArray bodyParts;
+    private final JsonArray equipments;
+}
+
+
+
+public class ExercisesController {
     @FXML
     private void initialize() {
         try {
@@ -73,43 +113,7 @@ public class ExercisesController {
         card.getChildren().addAll(header, details);
         return card;
     }
-}
 
-class Exercise {
-    private final String name;
-    private final String gifUrl;
-    private final JsonArray instructions;
-    private final JsonArray targetMuscles;
-    private final JsonArray bodyParts;
-    private final JsonArray equipments;
-
-    public Exercise(int i) {
-        JsonArray exercises = HandleJson.readExerciseJson();
-        assert exercises != null;
-        this.name = exercises.get(i).getAsJsonObject().get("name").getAsString();
-        this.gifUrl =  exercises.get(i).getAsJsonObject().get("gifUrl").getAsString();
-        this.instructions = exercises.get(i).getAsJsonObject().get("instructions").getAsJsonArray();
-        this.bodyParts = exercises.get(i).getAsJsonObject().get("bodyParts").getAsJsonArray();
-        this.equipments = exercises.get(i).getAsJsonObject().get("equipments").getAsJsonArray();
-        this.targetMuscles = exercises.get(i).getAsJsonObject().get("targetMuscles").getAsJsonArray();
-    }
-
-    public String getName() {
-        return name;
-    }
-    public String getGifUrl() {
-        return gifUrl;
-    }
-    public JsonArray getInstructions() {
-        return instructions;
-    }
-    public JsonArray getTargetMuscles() {
-        return targetMuscles;
-    }
-    public JsonArray getBodyParts() {
-        return bodyParts;
-    }
-    public JsonArray getEquipments() {
-        return equipments;
-    }
+    @FXML
+    private VBox ui_exercisesContainer;
 }
