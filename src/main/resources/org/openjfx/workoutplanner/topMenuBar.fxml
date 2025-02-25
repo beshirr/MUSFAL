@@ -10,7 +10,6 @@
     <Menu text="CALCULATORS">
         <MenuItem text="BMI" onAction="#handleBMI"/>
         <MenuItem text="BODY FAT Percentage" onAction="#handleBFP"/>
-        <MenuItem text="CALORIES BURNT" onAction="#handleCB"/>
         <MenuItem text="DAILY CALORIE CALCULATOR" onAction="#handleDCC"/>
         <MenuItem text="ONE REP MAX CALCULATOR" onAction="#handleORMC"/>
     </Menu>

@@ -24,7 +24,7 @@
             <String fx:id="identifier" fx:value="bmr"/>
         </fx:define>
 
-        <Label text="Body Fat Percentage Calculator" styleClass="page-title"/>
+        <Label text="Daily Calorie Calculator" styleClass="page-title"/>
 
         <HBox spacing="20" styleClass="radio-group">
             <RadioButton text="Male" toggleGroup="$genderGroup"/>
@@ -38,7 +38,7 @@
         <ComboBox fx:id="activityComboBox" promptText="Select Your Activity Level"/>
 
 
-        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBMR"/>
+        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBMR" disable="true"/>
 
         <Label fx:id="ui_resultLabel"/>
         <Label fx:id="ui_resultClassification"/>

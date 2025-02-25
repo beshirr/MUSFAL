@@ -18,12 +18,12 @@
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <Label text="BMI Calculator" styleClass="page-title"/>
+            <Label text="One Rep Max Calculator" styleClass="page-title"/>
 
-            <TextField fx:id="inputWeight" promptText="Your weight (kg)" />
-            <TextField fx:id="inputHeight" promptText="Your height (cm)" />
+            <TextField fx:id="inputWeightLifted" promptText="Weight Lifted (kg)" />
+            <TextField fx:id="inputReps" promptText="Reps" />
 
-            <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateBMI" disable="true"/>
+            <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateORM" disable="true"/>
 
             <Label fx:id="ui_resultLabel"/>
             <Label fx:id="ui_resultClassification"/>
