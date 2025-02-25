@@ -152,7 +152,7 @@ public class CalculatorsController {
 
     private void validateInput(double[] input) {
         for (double value : input) {
-            if (value < 0) throw new RuntimeException();
+            if (value <= 0) throw new RuntimeException();
         }
     }
 
