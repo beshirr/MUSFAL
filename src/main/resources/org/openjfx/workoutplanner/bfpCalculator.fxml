@@ -36,7 +36,7 @@
         <TextField fx:id="inputHipCirc" promptText="Hip Circumference (cm)" />
         <TextField fx:id="inputNeckCirc" promptText="Neck Circumference (cm)" />
 
-        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBFP"/>
+        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBFP" disable="true"/>
 
         <Label fx:id="ui_resultLabel"/>
         <Label fx:id="ui_resultClassification"/>

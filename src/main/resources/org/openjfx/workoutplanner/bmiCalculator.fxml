@@ -23,7 +23,7 @@
             <TextField fx:id="inputWeight" promptText="Your weight (kg)" />
             <TextField fx:id="inputHeight" promptText="Your height (cm)" />
 
-            <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateBMI"/>
+            <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateBMI" disable="true"/>
 
             <Label fx:id="ui_resultLabel"/>
             <Label fx:id="ui_resultClassification"/>
