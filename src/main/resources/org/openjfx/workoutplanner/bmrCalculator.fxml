@@ -38,7 +38,7 @@
         <ComboBox fx:id="activityComboBox" promptText="Select Your Activity Level"/>
 
 
-        <Button fx:id="bfp_calculateButton" text="Calculate" onAction="#ui_calculateBMR" disable="true"/>
+        <Button fx:id="calculateButton" text="Calculate" onAction="#ui_calculateBMR"/>
 
         <Label fx:id="ui_resultLabel"/>
         <Label fx:id="ui_resultClassification"/>
