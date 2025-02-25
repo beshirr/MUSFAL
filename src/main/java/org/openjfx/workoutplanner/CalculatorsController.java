@@ -81,7 +81,6 @@ public class CalculatorsController {
                     RadioButton selectedRadioButton = (RadioButton) newValue;
                     userGender = selectedRadioButton.getText();
                 }
-
             });
         }
         if ("bmr".equals(identifier)) {
@@ -95,33 +94,67 @@ public class CalculatorsController {
     }
     @FXML
     private void ui_calculateBFP(ActionEvent actionEvent) {
-        double result = Calculators.calculateBFP(userGender, Double.parseDouble(inputWeight.getText()),
-                Double.parseDouble(inputHeight.getText()), Double.parseDouble(inputWaistCirc.getText()),
-                Double.parseDouble(inputNeckCirc.getText()), Double.parseDouble(inputHipCirc.getText()));
-        ui_resultLabel.setText(String.format("%.2f",result));
+        try {
+            double[] input = {Double.parseDouble(inputHeight.getText()), Double.parseDouble(inputWeight.getText()),
+                    Double.parseDouble(inputWaistCirc.getText()),  Double.parseDouble(inputHipCirc.getText()),
+            Double.parseDouble(inputNeckCirc.getText())};
+            validateInput(input);
+
+            double result = Calculators.calculateBFP(userGender, Double.parseDouble(inputWeight.getText()),
+                    Double.parseDouble(inputHeight.getText()), Double.parseDouble(inputWaistCirc.getText()),
+                    Double.parseDouble(inputNeckCirc.getText()), Double.parseDouble(inputHipCirc.getText()));
+            ui_resultLabel.setText(String.format("%.2f",result));
+        } catch (Exception e) {
+            ui_resultLabel.setText("INVALID INPUT");
+        }
     }
     @FXML
     private void ui_calculateBMI(ActionEvent actionEvent) {
-        double result = Calculators.calculateBMI(Double.parseDouble(inputWeight.getText()),
-                Double.parseDouble(inputHeight.getText()));
-        ui_resultLabel.setText(String.format("%.2f",result));
+        try {
+            double[] input = {Double.parseDouble(inputHeight.getText()), Double.parseDouble(inputWeight.getText())};
+            validateInput(input);
+            double result = Calculators.calculateBMI(Double.parseDouble(inputWeight.getText()),
+                    Double.parseDouble(inputHeight.getText()));
+            ui_resultLabel.setText(String.format("%.2f",result));
 
-        String classification = Calculators.bmiClassification(result);
-        ui_resultClassification.setText(classification);
+            String classification = Calculators.bmiClassification(result);
+            ui_resultClassification.setText(classification);
+        } catch (Exception e) {
+            ui_resultLabel.setText("INVALID INPUT");
+        }
     }
     @FXML
     private void ui_calculateBMR(ActionEvent actionEvent) {
-        double activityLevel = Calculators.evaluateActivityLevel(Calculators.ActivityLevel.valueOf(userActivityLevel));
-        double result = Calculators.calculateBMR(userGender, Integer.parseInt(inputAge.getText()), Double.parseDouble(inputWeight.getText()),
-                Double.parseDouble(inputHeight.getText()), activityLevel);
-        ui_resultLabel.setText(String.format("%.2f", result));
+        try {
+            double[] input = {Double.parseDouble(inputHeight.getText()), Double.parseDouble(inputWeight.getText()),
+                    Double.parseDouble(inputAge.getText())};
+            validateInput(input);
+            double activityLevel = Calculators.evaluateActivityLevel(Calculators.ActivityLevel.valueOf(userActivityLevel));
+            double result = Calculators.calculateBMR(userGender, Integer.parseInt(inputAge.getText()), Double.parseDouble(inputWeight.getText()),
+                    Double.parseDouble(inputHeight.getText()), activityLevel);
+            ui_resultLabel.setText(String.format("%.2f", result));
+        } catch (Exception e) {
+            ui_resultLabel.setText("INVALID INPUT");
+        }
     }
     @FXML
     private void ui_calculateORM(ActionEvent actionEvent) {
-        double result = Calculators.calculateORM(Double.parseDouble(inputWeightLifted.getText()), Integer.parseInt(inputReps.getText()));
-        ui_resultLabel.setText(String.format("%.2f", result));
+        try {
+            double[] input = {Double.parseDouble(inputWeightLifted.getText()), Integer.parseInt(inputReps.getText())};
+            validateInput(input);
+            double result = Calculators.calculateORM(Double.parseDouble(inputWeightLifted.getText()), Integer.parseInt(inputReps.getText()));
+            ui_resultLabel.setText(String.format("%.2f", result));
+        }
+        catch (Exception e) {
+            ui_resultLabel.setText("INVALID INPUT");
+        }
     }
 
+    private void validateInput(double[] input) {
+        for (double value : input) {
+            if (value < 0) throw new RuntimeException();
+        }
+    }
 
     @FXML String identifier;
     @FXML private TextField inputAge;
