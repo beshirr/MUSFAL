@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.openjfx.workoutplanner.CalculatorsController"
+      stylesheets="@css/style.css"
+      spacing="15">
+
+    <fx:include source="topMenuBar.fxml"/>
+
+    <StackPane VBox.vgrow="ALWAYS">
+        <VBox spacing="10" styleClass="content-container" maxWidth="400">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="One Rep Max Calculator" styleClass="page-title"/>
+
+            <TextField fx:id="inputWeightLifted" promptText="Weight Lifted (kg)" />
+            <TextField fx:id="inputReps" promptText="Reps" />
+
+            <Button fx:id="bmi_calculateButton" text="Calculate" onAction="#ui_calculateORM" disable="true"/>
+
+            <Label fx:id="ui_resultLabel"/>
+            <Label fx:id="ui_resultClassification"/>
+        </VBox>
+    </StackPane>
+</VBox>
